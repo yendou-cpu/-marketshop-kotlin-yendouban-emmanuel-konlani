@@ -1,92 +1,105 @@
+# — Version Kotlin / Jetpack Compose
+
 ## Étudiant
 - KONLANI Yendouban Emmanuel
 
----
-
-## Technologie utilisée
--Kotlin/Compose 
+*  **Lien vers la version Flutter :** [https://github.com/yendou-cpu/-marketshop-flutter-Emmanuel-yendouban-konlani](#)
 
 ---
 
-## Description de l'application
-STYLE_NOVA est une application mobile de boutique en ligne permettant :
-- l’authentification des utilisateurs,
-- l’affichage des produits depuis une API,
-- la gestion d’un panier,
-- le filtrage par catégories,
-- et la simulation d’un processus d’achat.
+##  Description
+**STYLE-NOVA** est une application mobile de mini e-commerce développée en **Kotlin** avec **Jetpack Compose**.
 
-L’application consomme l’API FakeStoreAPI pour récupérer les données produits.
+Elle permet à l'utilisateur de parcourir un catalogue de produits, d'ajouter des articles à un panier, de passer commande et de consulter son historique. Les données produits proviennent de l'API publique **FakeStoreAPI**, tandis que le panier et les commandes sont persistés localement avec **Room**.
 
 ---
 
-# Fonctionnalités implémentées
+## Fonctionnalités implémentées
 
-| Fonctionnalité | État |
-|---|---|
-| Connexion utilisateur | ✅ |
-| Inscription utilisateur | ✅ |
-| Affichage catalogue produits | ✅ |
-| Détail produit | ✅ |
-| Ajout au panier | ✅ |
-| Suppression du panier | ✅ |
-| Gestion des quantités | ❌ |
-| Filtrage par catégories | ✅ |
-| Navigation entre écrans | ✅ |
-| Persistance session utilisateur | ✅ |
-| Historique | ❌ |
-| Paiement | ❌ |
-| Notifications | ❌ |
+### Authentification
+* [x] Écran de connexion (login)
+* [x] Écran d'inscription (signup)
+* [x] Navigation vers l'app après authentification
+* [x] Déconnexion depuis le profil
 
----
+### Écran Catalogue
+* [x] Affichage des produits en grille 2 colonnes
+* [x] Image, titre, prix, catégorie sur chaque carte
+* [x] Filtre par catégorie (`FilterChip` horizontal)
+* [x] Indicateur de chargement (`CircularProgressIndicator`)
+* [x] Clic sur un produit $\rightarrow$ Écran détail
 
-#  Bibliothèques utilisées
+### Écran Détail produit
 
-| Package | Version |
-|---|---|
-| http | ^1.2.0 |
-| sqflite | ^2.3.0 |
-| sqflite_common_ffi | ^2.3.0 |
-| sqflite_common_ffi_web | ^0.4.2 |
-| path | ^1.9.0 |
-| shared_preferences | ^2.2.0 |
-| provider | ^6.1.1 |
+### Écran Panier
+* [x] Liste des produits ajoutés (depuis `Room`)
+* [x] Image, titre, prix unitaire, quantité, sous-total
+* [x] Modifier la quantité de chaque ligne
+* [x] Supprimer une ligne
+* [x] Total général
+* [x] Bouton "Passer commande"
+* [x] Message "Votre panier est vide"
 
----
+### Écran Commande
+* [ ] Formulaire : nom, téléphone, adresse, ville
+* [ ] Validation des champs
+* [ ] Récapitulatif du panier en lecture seule
+* [ ] Sauvegarde en base et vidage du panier
+* [ ] Redirection vers l'historique après commande
 
-#  Captures d'écran
+### Écran Historique
+* [ ] Liste des commandes passées
+* [ ] Détail d'une commande au clic
 
-##  Écran de connexion
-![Login](screenshots/login.png)
+### Écran Profil
+* [x] Affichage des infos depuis l'API (`GET /users/1`)
+* [x] Modification locale (`SharedPreferences`)
+* [x] Switch mode sombre
+* [x] Bouton "Vider mes données" avec confirmation
+* [x] Déconnexion
 
-##  Catalogue produits
-![Home](screenshots/home.png)
-
-##  Panier
-![Cart](screenshots/cart.png)
-
----
-
-#  Difficultés rencontrées
-
-L’une des principales difficultés rencontrées concernait la compatibilité entre Flutter Web et SQLite avec `sqflite_common_ffi_web`. Plusieurs erreurs liées au worker `sqflite_sw.js`, au cache Gradle, au Kotlin daemon et au NDK Android empêchaient l’application de se lancer correctement. Pour résoudre ces problèmes, nous avons réinstallé le NDK Android, nettoyé les caches Gradle (`flutter clean`), activé le mode développeur Windows pour les symlinks Flutter, et configuré correctement les dépendances Web et Android.
+### Navigation
+* [x] Bottom Navigation Bar (Catalogue, Panier, Historique, Profil)
+* [x] Navigation contextuelle (catalogue $\rightarrow$ détail)
 
 ---
 
-#  Améliorations possibles
+##  Bibliothèques utilisées
 
-Si nous avions plus de temps, nous aimerions :
-- ajouter un système de paiement réel,
-- intégrer Firebase Authentication,
-- améliorer le design UI/UX,
-- ajouter un mode sombre,
-- mettre en place des notifications push,
-- et synchroniser le panier avec une base de données distante.
+| Bibliothèque | Version | Usage |
+| :--- | :--- | :--- |
+| **`Jetpack Compose BOM`** | `2026.02.01` | UI déclarative |
+| **`Retrofit`** | `2.9.0` | Appels API REST |
+| **`Gson Converter`** | `2.9.0` | Désérialisation JSON |
+| **`Room`** | `2.6.1` | Persistance locale (panier) |
+| **`Coil Compose`** | `2.x` | Chargement d'images asynchrone |
+| **`Navigation Compose`** | `2.8.8` | Navigation entre écrans |
+| **`Coroutines`** | `1.7.x` | Gestion des tâches asynchrones |
+| **`ViewModel`** | `2.10.0` | Gestion d'état et cycle de vie |
+| **`KSP`** | `2.0.21-1.0.27` | Annotation processing pour Room |
+
+---
+
+## Captures d'écran
+
+
+| Catalogue | Détail produit | Panier |
+| :---: | :---: | :---: |
+| ![Catalogue](https://github.com/yendou-cpu/-marketshop-kotlin-yendouban-emmanuel-konlani/blob/main/app/src/main/java/com/example/projetgestion1/screenshots/catalogue.jpeg) | ![Détail produit](https://github.com/yendou-cpu/-marketshop-kotlin-yendouban-emmanuel-konlani/blob/main/app/src/main/java/com/example/projetgestion1/screenshots/detail.jpeg) | ![Panier](https://github.com/yendou-cpu/-marketshop-kotlin-yendouban-emmanuel-konlani/blob/main/app/src/main/java/com/example/projetgestion1/screenshots/panier.jpeg) |
 
 ---
 
-#  Lien vers la version flutter
+##  Difficultés rencontrées
 
-https://github.com/VOTRE_USERNAME/marketshop-kotlin
+1. **Configuration de Room avec KSP (AGP 9.x) :** La principale difficulté a été la configuration du moteur d'annotations de Room avec KSP sous les versions récentes d'Android Gradle Plugin. Le plugin `kotlin.android` entrait en conflit avec `kotlin.compose`, provoquant l'erreur `Cannot add extension with name 'kotlin'`. La solution a consisté à retirer explicitement `kotlin.android` pour ne conserver que `kotlin.compose`, qui intègre désormais nativement les configurations nécessaires.
+2. **Gestion du statut du Panier (CartViewModel partagé) :** Une autre complexité a concerné le partage et la synchronisation de l'état du panier à travers plusieurs écrans distincts. En instanciant un unique `CartViewModel` au niveau de l'arbre de navigation principal (`AppNavigation`) et en le passant en paramètre aux fonctions composables de `HomeScreen`, `DetailScreen` et `CartScreen`, le panier est resté parfaitement synchronisé sans aucune incohérence de données.
 
 ---
+
+##  Améliorations possibles
+
+Avec plus de temps, nous aurions apporté les optimisations suivantes :
+* **Nouvelles Fonctionnalités :** Implémentation complète de l'écran d'historique des commandes avec une table dédiée dans la base de données Room, et intégration d'un champ de recherche textuelle dynamique dans le catalogue.
+* **Sécurité :** Mise en place d'une gestion d'authentification robuste avec stockage sécurisé d'un token JWT (via *EncryptedSharedPreferences* ou *DataStore*).
+* **Architecture & Thème :** Injection d'un mode sombre fonctionnel de manière globale en faisant transiter l'état du thème via un `CompositionLocalProvider`.
+* **Robustesse & UX :** Amélioration de la résilience du réseau à l'aide d'un mécanisme de tentative automatique (*retry*) en cas de coupure, intégration d'un état *offline* complet, et ajout d'animations personnalisées lors des transitions entre les routes de navigation.
